@@ -33,7 +33,7 @@ Foi utilizado o JavaScript (puro) na aplicação desenvolvida, como foi utilizad
 #
 #
 #
-                	✅  Cálculo de Pab's 🚀 Concluído!!!  ✅
+<align="center">✅  Cálculo de Pab's 🚀 Concluído!!!  ✅</center>                	
 
 ## License
 
