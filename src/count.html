@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soma</title>
+
+    <!--Script-->
+    <script src="script/novo.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+    integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" 
+    crossorigin="anonymous"></script>
+    
+    <!--Style-->
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/page2.css">
+
+    <!--Fonts--->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="cotainer">
+        <header>
+            <img src="assets/logo-inss.svg">
+
+            <p>Agência de Pindamonhangaba</p>
+        </header>
+
+        <div class="valuepay">
+            <p>Valor pago ao beneficiário:</p>
+            <p class="resultado"></p>
+        </div>
+    </div>
+
+    <div id="result" style='display: none;'>
+        Valor pago:
+        <p class="amountPaid"></p>
+
+        Novo salario:
+        <p class="newSalary"></p>
+
+        Valor dia: 
+        <p class="dayValue"></p>
+
+        Décimo-Terceiro:
+        <p class="thirteenth"></p>
+
+        Inicio:
+        <p class="startOfBenefit"></p>
+
+        Fim: 
+        <p class="endOfBenefit"></p>
+
+        o complemento foi:
+        <p class="complement"> </p>
+        <button type='button' id='btnMO' onclick='mostra_oculta()'> Voltar</button>
+
+    </div>
+</body>
+</html>

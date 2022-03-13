@@ -1,0 +1,124 @@
+.content{
+    display: grid;
+
+    grid-template-columns: 60% 40%;
+    /*grid-template-rows: clamp(20rem, 5vw, 30.5rem) 1fr;*/
+    grid-template-areas: 
+    'header header'
+    'left right'
+}
+
+
+.info{
+    grid-area: left;
+}
+
+.info h1{
+    font-size: clamp(20px, 5vw, 2.4rem);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+
+    color: #03265C;
+
+    margin-bottom: 2.4rem;
+}
+
+main{
+    grid-area: right;
+
+    display: flex;
+    align-items: center;
+}
+
+main h2{
+    font-size: clamp(20px, 5vw, 2.4rem);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    
+    color: #03265C;
+}
+
+input{
+    border: .2rem solid #888888;
+
+    width: clamp(50px, 25vw, 40.6rem);
+
+    padding: 0 1.6rem;
+
+    margin-top: 2.4rem;
+}
+
+
+
+.info{
+    margin-left: 6rem;
+    margin-top: 5rem;
+
+    font-family: 'Poppins';
+    font-size: clamp(10px, 5vw, 1.8rem);
+    font-weight: 400;
+}
+
+.info li{
+    margin-bottom: 5rem;
+}
+
+.quests{
+    display: grid;
+}
+
+#container{
+    margin-top: 5rem;
+}
+
+#container button{
+    margin-left: 50%;
+}
+
+#result{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    
+    
+    
+    
+
+    width: 100vw;
+    
+    
+    background: #ffffff;
+}
+
+.lineOne{
+    display: grid;
+
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-areas: 
+    'no no no no'
+    '0 0 0 fix';
+
+    text-align: center;
+}
+
+
+
+.period{
+    grid-area: fix;
+
+    text-align: center;
+    
+    width: 250px;       
+}
+
+#result section{
+    display: grid;
+
+    border: 1px solid #03265C;
+}
+
+.vt{
+    display: grid;
+    border: 1px solid #03265C;
+}

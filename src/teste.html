@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revisão de benefício</title>
+
+    <!--Script-->
+    <script defer src="script/novo.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+    integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" 
+    crossorigin="anonymous"></script>
+    
+    <!--Style-->
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/home.css">
+
+    <!--Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="home" class="content">
+        <header>
+            <img src="assets/logo-inss.svg">
+
+            <p>Agência de Pindamonhangaba</p>
+        </header>
+
+
+        <div class="info">
+            <h1>Cálculo para Revisão de benefício</h1>
+
+            <li>Campo 1: Valor pago ao beneficiário antes da revisão.</li>
+            <li>Campo 2: Nova data de início do benefício.</li>
+            <li>Campo 3: Nova data de cessação do benefício.</li>
+            <li>Campo 4: Nova renda mensal.</li>
+        </div>
+
+        
+        <main>
+            <div id="container">
+                <section>
+                    <h2>Base para cálculo:</h2> 
+                    <form action="" class="quests">
+                        <!--<label for="initial">Valor recebido:</label>-->
+                        <input type="number" id="rmi" step=".01" placeholder="Campo 1"/>
+                        
+                        <!--<label class="start">Selecione a data de início do benefício:</label> 
+                        <input type="date" id="NewStart"/><br> -->
+                        <input type="text" id="NewStart" placeholder="Campo 2"  onfocus="(this.type='date')"/>
+                        
+                        <!--<label class="start">Selecione a data de cessação do benefício:</label>
+                        <input type="date" id="NewCessation"/><br>-->
+                        <input type="text" id="NewCessation" placeholder="Campo 2"  onfocus="(this.type='date')"/>
+                        <!--<label class="start">Selecione o valor da renda mensal do benefício:</label>-->
+                        
+                        <!--<label for="newDate">Renda após reajuste:</label>-->
+                        <input type="number"id="rma" step=".01" placeholder="Campo 4"/>
+                        
+                        <button  type='button' id="show-or-hide" onclick="diferenca()">
+                            <img src="assets/enviar2.png">
+                            Calcular
+                        </button>
+                        
+                        
+                    </form> 
+                    
+                    
+                </section>
+
+            </div>
+        </main>
+    </div>  
+   
+    <div id="result" style="display: none";>
+        <header>
+            <img src="assets/logo-inss.svg">
+
+            <p>Agência de Pindamonhangaba</p>
+        </header>
+
+        <div class="lineOne">
+            <div>    
+                <p>Valor pago ao beneficiário:</p>
+                <p class="amountPaid"></p>
+            </div>
+    
+            <div> 
+                <p>Valor da renda mensal:</p>
+                <p class="newSalary"></p>
+            </div>
+    
+            <div> 
+                <p>Valor pago ao dia:</p> 
+                <p class="dayValue"></p>
+            </div>
+
+            <section> 
+                <p>Décimo-Terceiro:</p>
+                
+                R$ <p class="thirteenth"></p>
+            </section>
+
+            <div class="period"> 
+                <p>Período pago:</p>
+                <section>    
+                    <p>Início:
+                    <p class="startOfBenefit"></p>
+                    </p>
+                </section>
+                <section>
+                    <p>Fim: </p>
+                    <p class="endOfBenefit"></p>
+                </section>
+            </div>
+        </div>
+        
+
+        
+
+        
+
+        <div class="vt"> 
+            <p>Valor total:</p>
+
+            <div class="infben">
+                <p class="days"></p>
+                <p>Valor pago:</p>
+                <p>Total:</p>
+                <p>Décimo-Terceiro:</p>
+                <p>Valor Total:</p>
+                
+            </div>
+            
+            <div class="values">
+                <p class="withoutDiscounts"></p>
+                <p class="amountPaid"></p>
+                <p class="withDiscounts"></p>
+                <p class="thirteenth"></p>
+                <p class="complement"></p>
+            </div>
+        </div>    
+
+        <button type='button' onclick="mostra_oculta()"> Voltar</button>
+    </div>
+
+</body>
+</html>
