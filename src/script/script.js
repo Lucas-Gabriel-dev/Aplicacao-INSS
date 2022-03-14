@@ -1,17 +1,38 @@
+var btn = document.querySelector('#show-or-hide');
+var result = document.querySelector('#result');
+var home = document.querySelector('#home');
+
+btn.addEventListener('click', function(){
+    if(result.style.display == 'block'){
+        result.style.display = 'none';
+    } 
+    else{
+        result.style.display = 'block';
+        home.style.display = 'none'
+    }
+})
+
 function diferenca() {
+    /** Datas do beneficio antes da revisão 
     let startDate = document.getElementById('OldStart').value;
+    let endDate = document.getElementById('OldCessation').value;*/
 
-    let endDate = document.getElementById('OldCessation').value;
+    /** Datas do beneficio após revisão */
+    let newStartdate = document.getElementById('NewStart').value;
+    let newEndofDate = document.getElementById('NewCessation').value;
 
-    console.log("Start Date: ", startDate, " End Date: ", endDate);
+    /** Valor  recebido pelo beneficiario antes e após revisão */
+    let OldRMI = document.getElementById('rmi').value;
 
-    let OldRMI = document.getElementById('rmi').value / 30;  
+    /** Nova Renda Mensal */
+    let newRMI = document.getElementById('rma').value;
+
 
     /** Funcao para calcular dias recebidos */
 
     function days(start, end){
-        function diasNoMes(mes, ano) {
-            var data = new Date(ano, mes, 0);
+        function diasNoMes(month, year) {
+            var data = new Date(month, year, 0);
             return data.getDate();
         }
 
@@ -49,7 +70,7 @@ function diferenca() {
        return(diffDays);
     }
 
-    console.log(days(startDate, endDate));
+    /** Função para calculo decimo terceiro */
 
     function thirteenth(start, end, rmi){
         var [startyear, startmonth, startday] = start.split('-').map(Number);
@@ -65,160 +86,98 @@ function diferenca() {
         if(diffMonth >= 2){
             diffMonth = diffMonth - 1;
 
-            if(startday <= 15 && dayend >= 15){
+            if(startday <= 15 ){
                 diffMonth = diffMonth + 1;
+            }
+            if(dayend >= 15){
+            diffMonth = diffMonth + 1;
             }
         }
 
-        valueTH = rmi * diffMonth;
+        if(diffMonth == 1 && startday <= 15 && dayend >= 15){
+            diffMonth = diffMonth + 1;
+        }
+        if(diffMonth == 1 && startday > 15 && dayend < 15){
+            diffMonth = diffMonth - 1;
+        }
+
+        if(diffMonth == 0 && startday <= 15 && dayend >= 15){
+            diffMonth = diffMonth + 1;
+        }
+
+        valueTH = (rmi / 12) * diffMonth;
+        console.log(valueTH)
 
         return(valueTH)
     }
 
-    console.log(thirteenth(startDate, endDate, OldRMI));
+    /** Calculo para valor recebido 
+    var ValueReceived = days(startDate, endDate) * (OldRMI / 30); 
+    console.log("Valor recebido ", ValueReceived);*/
 
-
-    /*** Data de início e cessação do benefício antes da revisão!! */
-    /** Início */
-    let oldDays = document.getElementById('OldStart').value;
-
-
-    var OldDate = new Date(oldDays).getDate();
-    var OldMonth = new Date(oldDays).getMonth();
-    var OldYear = new Date(oldDays).getFullYear();
-
-    console.log(OldDate);
-
-    function Time(day, cessation){
-        var daystart = day;
-        var daycessation = cessation;
-
-        var received = Math.abs(daystart - daycessation);
-        var days = Math.ceil(received/ (1000 * 60 * 60 * 24));
-        
-        return days;
-    }
-
-    function diasNoMes(mes, ano) {
-        var data = new Date(ano, mes, 0);
-        return data.getDate();
-    }
-
-    if(OldDate > diasNoMes(OldMonth, OldYear)) {
-        OldDate = 1;
-        OldMonth = OldMonth + 1;
-
-        if(OldMonth == 13){
-            OldMonth = 1;
-            OldYear = OldYear + 1;
-        }
-    }
-
-    console.log(OldDate, OldMonth, OldYear);
-
-    /** Cessação */
-    let oldCessation = new Date(document.getElementById('OldCessation').value);
-
-    var OldDateofCessation = oldCessation.getDate() + 1;
-    var OldMonthofCessation = oldCessation.getMonth() + 1;
-    var OldYearofCessation = oldCessation.getFullYear();
-
-    if(OldDateofCessation > diasNoMes(OldMonthofCessation, OldYearofCessation)) {
-        OldDateofCessation = 1;
-        OldMonthofCessation = OldMonthofCessation + 1;
-
-        if(OldMonthofCessation == 13){
-            OldMonthofCessation = 1;
-            OldYearofCessation = OldYearofCessation + 1;
-        }
-    }
-
-    console.log(OldDateofCessation, OldMonthofCessation, OldYearofCessation);
-
-    var diff = moment(oldDays,"DD/MM/YYYY").diff(moment(oldCessation,"DD/MM/YYYY"));
-    var dias = moment.duration(diff).asDays();
-
-    console.log(Math.abs(dias));
-
-    /** Valor rebido antes da revisão! */
-     
+    /** Calculo para complemento positivo */
+    /** Valor pago ao dia */
+    ValueDay = newRMI / 30;
     
-    var ValueReceived = OldRMI * Time(oldDays, oldCessation);
+    /** Valor que deve ser pago */
+    ValueToPay = days(newStartdate, newEndofDate) * (newRMI / 30);
+    console.log("Valor da renda sem descontos", ValueToPay);
 
-    console.log(ValueReceived);
+    /** Rubrica 101 */
+    Rubrica = Math.abs(OldRMI - ValueToPay);
+    console.log("Rubrica 101", Rubrica);
+
+    /** Rubrica 104, decimo terceiro */
+    ValueThirteenth = thirteenth(newStartdate, newEndofDate, newRMI);
+    console.log("Rubrica 104, valor decimo terceiro: ", ValueThirteenth);
+
+    /** Complemento positivo */
+    Complement = Math.abs(OldRMI - ValueToPay) + ValueThirteenth;
+    console.log("Complemento positivo", Complement);
     
-    /** Calculo dos novos valores */
-
-    /** Nova data de inicio beneficio */
-    let newDays = new Date(document.getElementById('NewStart').value);
-
-    var NewDate = new Date(newDays).getDate() + 1;
-    var NewMonth = newDays.getMonth() + 1;
-    var NewYear = newDays.getFullYear();
-
-    if(NewDate > diasNoMes(NewMonth, NewYear)) {
-        NewDate = 1;
-        NewMonth = NewMonth + 1;
-
-        if(NewMonth == 13){
-            NewMonth = 1;
-            NewYear = NewYear + 1;
-        }
-    }
-
-    /** Nova data de cessação do beneficio */
-    let  newDayofCessation = new Date(document.getElementById('NewCessation').value);
-
-    var NewDateofCessation = new Date(newDayofCessation).getDate() + 1;
-    var NewMonthofCessation = newDayofCessation.getMonth() + 1;
-    var NewYearofCessation = newDayofCessation.getFullYear();
-
-    if(NewDateofCessation > diasNoMes(NewMonthofCessation, NewYearofCessation)) {
-        NewDateofCessation = 1;
-        NewMonthofCessation = NewMonthofCessation + 1;
-
-        if(NewMonthofCessation == 13){
-            NewMonthofCessation = 1;
-            NewYearofCessation = NewYearofCessation + 1;
-        }
-    }
-
-    /** Novo valor salario */
-    let newRMI = document.getElementById('rma').value / 30;
     
-    if(NewDateofCessation == diasNoMes(NewMonth, NewYear)){
-        var NewValueToReceived = newRMI * 30;
-    }
-    else {
-        var NewValueToReceived = newRMI * Time(newDays,newDayofCessation);
-    }
-
-    /** Novo Décimo Terceiro */
-    var value13 = NewMonthofCessation - NewMonth;
-
-    if(NewDate > 15){
-        value13 = value13 - 1;
-    } 
-
-    if(NewDateofCessation > 15){
-        value13 = value13 + 1;
-    }
-
-    if(value13 < 0){
-        value13 = 0;
-    }
-
-    var Thirteenth = document.getElementById('rma').value / 12;
-
-    Thirteenth = Thirteenth * value13;
-
-   /** Complemento positivo */
-
-    var complement = NewValueToReceived - ValueReceived;
+    document.querySelector(".newSalary").innerHTML = newRMI;
+    document.querySelector(".dayValue").innerHTML = (ValueDay).toFixed(2);
     
-    console.log(complement);
-    console.log(Thirteenth);
+    
+    _start = newStartdate.split('-').reverse().join('-');
+    document.querySelector(".startOfBenefit").innerHTML = _start;
+
+    _end = newEndofDate.split('-').reverse().join('-');
+    document.querySelector(".endOfBenefit").innerHTML = _end;
+
+    
+    document.querySelector(".days").innerHTML = days(newStartdate, newEndofDate) + " dias:";  
+    document.querySelector(".withoutDiscounts").innerHTML = (ValueToPay).toFixed(2); 
+
+    const amountPaid = document.querySelectorAll(".amountPaid")
+    amountPaid.forEach(element => {
+        element.textContent = Number(OldRMI).toFixed(2);
+    })
+
+    const rubrica = document.querySelectorAll(".withDiscounts")
+    rubrica.forEach(element => {
+        element.textContent = (Rubrica).toFixed(2); 
+    })
    
+    const thirteenthhh = document.querySelectorAll(".thirteenth");
+    thirteenthhh.forEach(element => {
+        element.textContent = (ValueThirteenth).toFixed(2);
+    })
+
+    document.querySelector(".complement").innerHTML = (Complement).toFixed(2);
 }
 
+function mostra_oculta(){
+    var x = document.getElementById("result");
+    if (x.style.display === "block") {
+        x.style.display = "none";
+    } else {
+        x.style.display = "block";
+    }
 
+    window.location.href = "./index.html";
+
+
+    return;
+}

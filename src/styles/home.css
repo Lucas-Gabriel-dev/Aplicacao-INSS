@@ -42,17 +42,18 @@ input{
     border: .2rem solid #888888;
 
     width: clamp(50px, 25vw, 40.6rem);
+    height: clamp(50px, 5vh, 20.6rem);
 
     padding: 0 1.6rem;
 
-    margin-top: 2.4rem;
+    margin-top: 2rem;
 }
 
 
 
 .info{
     margin-left: 6rem;
-    margin-top: 5rem;
+    margin-top: 1.9%;
 
     font-family: 'Poppins';
     font-size: clamp(10px, 5vw, 1.8rem);
@@ -60,7 +61,7 @@ input{
 }
 
 .info li{
-    margin-bottom: 5rem;
+    margin-bottom: 3rem;
 }
 
 .quests{
@@ -68,57 +69,131 @@ input{
 }
 
 #container{
-    margin-top: 5rem;
+    margin-top: 3%;
 }
 
 #container button{
     margin-left: 50%;
 }
 
-#result{
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    
-    
-    
-    
-
-    width: 100vw;
-    
-    
-    background: #ffffff;
-}
-
 .lineOne{
+    margin-left: 5%;
+    margin-right: 5%;
+
     display: grid;
 
     grid-template-columns: 25% 25% 25% 25%;
     grid-template-areas: 
     'no no no no'
-    '0 0 0 fix';
+    'rubrica vt 0 fix';
 
     text-align: center;
 }
 
+.lineOne p{
+    margin-top: 2%;
+    margin-right: 2%;
 
+    font-family: 'Poppins';
+    font-size: clamp(10px, 5vw, 1.5rem);
+    font-weight: 400;
+}
+
+.text{
+    text-align: center;
+
+    height: clamp(70px, 5vh, 9.9rem);
+    
+    margin-right: 5%;
+    margin-top: 5%;
+}
+
+.lineOne :nth-child(4){
+    margin-right: 0%;
+}
+
+.text .value{
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
 
 .period{
     grid-area: fix;
 
+    height: clamp(105px, 5vh, 25rem);
+
+    margin-top: 10%;
+   
     text-align: center;
-    
-    width: 250px;       
+    justify-content: space-around;
 }
 
-#result section{
-    display: grid;
+.period section{
+    display: flex;
 
-    border: 1px solid #03265C;
+    justify-content: space-between;
+
+    margin-right: 5%;
+    margin-left: 5%;
 }
 
 .vt{
-    display: grid;
-    border: 1px solid #03265C;
+    grid-area: vt;
+
+    height: clamp(250px, 5vh, 25rem);
+    width: clamp(250px, 20vw, 32rem);
+
+    margin-top: 10%;
+    margin-left: 0%;
+   
+    text-align: center;
+    justify-content: space-around;
+
 }
+
+.vt section{
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-right: 5%;
+    margin-left: 5%;
+}
+
+.line img{
+    text-align: center;
+}
+
+.rubrica{
+    grid-area: rubrica;
+
+    height: clamp(100px, 5vh, 25.3rem);
+    width: clamp(200px, 5vw, 92.6rem);
+
+    margin-top: 10%;
+
+    border: 1px solid #009A66;
+
+    text-align: center;  
+}
+
+.rubrica section{
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-right: 5%;
+    margin-left: 5%;
+}
+
+#result button{
+    width: 20%;
+
+    margin-top: 3rem;
+    margin-left: 5%;
+    margin-bottom: clamp(1rem, 5vw, 5rem);
+}
+
+

@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Revisão de benefício</title>
-
+    <title>Cálculo de Pab's</title>
+    
     <!--Script-->
-    <script defer src="script/novo.js"></script>
+    <script defer src="script/script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
     integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" 
     crossorigin="anonymous"></script>
@@ -15,6 +15,7 @@
     <!--Style-->
     <link rel="stylesheet" href="styles/global.css">
     <link rel="stylesheet" href="styles/home.css">
+    <link rel="icon" type="imagem/png" href="/assets/favicon-32x32.png"/>
 
     <!--Fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,7 +33,7 @@
 
 
         <div class="info">
-            <h1>Cálculo para Revisão de benefício</h1>
+            <h1>Cálculo de Pab's</h1>
 
             <li>Campo 1: Valor pago ao beneficiário antes da revisão.</li>
             <li>Campo 2: Nova data de início do benefício.</li>
@@ -69,14 +70,14 @@
                         
                     </form> 
                     
-                    
                 </section>
 
             </div>
         </main>
     </div>  
-   
-    <div id="result" style="display: none";>
+
+
+    <div id="result" style="display: none;">
         <header>
             <img src="assets/logo-inss.svg">
 
@@ -84,69 +85,114 @@
         </header>
 
         <div class="lineOne">
-            <div>    
+            <div class="text" id="pgbenefit">    
                 <p>Valor pago ao beneficiário:</p>
-                <p class="amountPaid"></p>
+                <section class="value">
+                    <p>R$</p>
+                    <p class="amountPaid"></p>
+                </section>   
             </div>
     
-            <div> 
-                <p>Valor da renda mensal:</p>
-                <p class="newSalary"></p>
+            <div class="text"> 
+                <section>
+                    <p>Valor da renda mensal:</p>
+                </section>
+                <section class="value">
+                    <p>R$</p>
+                    <p class="newSalary"></p>
+                </section>
             </div>
     
-            <div> 
+            <div class="text"> 
                 <p>Valor pago ao dia:</p> 
-                <p class="dayValue"></p>
+                <section class="value">
+                    <p>R$</p>
+                    <p class="dayValue"></p>
+                </section>
             </div>
 
-            <section> 
+            <div class="text"> 
                 <p>Décimo-Terceiro:</p>
-                
-                R$ <p class="thirteenth"></p>
-            </section>
+                <section class="value">
+                    <p>R$</p>
+                    <p class="thirteenth"></p>
+                </section>
+            </div>
 
             <div class="period"> 
                 <p>Período pago:</p>
                 <section>    
-                    <p>Início:
+                    <p>Início:</p>
                     <p class="startOfBenefit"></p>
-                    </p>
                 </section>
-                <section>
+
+                <section>    
                     <p>Fim: </p>
                     <p class="endOfBenefit"></p>
                 </section>
             </div>
-        </div>
-        
 
-        
+            <div class="vt"> 
 
-        
-
-        <div class="vt"> 
-            <p>Valor total:</p>
-
-            <div class="infben">
-                <p class="days"></p>
-                <p>Valor pago:</p>
-                <p>Total:</p>
-                <p>Décimo-Terceiro:</p>
-                <p>Valor Total:</p>
+                <p>Valor total:</p>
                 
-            </div>
+                <section > 
+                    <p class="days"></p>
+                    <p class="withoutDiscounts"></p>
+                </section>
+    
+                <section>
+                    <p>Valor pago:</p>
+                    <p class="amountPaid"></p>
+                </section>
+
+                <div class="line">
+                    <img src="assets/line.svg"/>
+                </div>
+    
+                <section>
+                    <p>Total:</p>
+                    <p class="withDiscounts"></p>
+                </section>
+                                
+                <section>
+                    <p>Décimo-Terceiro:</p>
+                    <p class="thirteenth"></p>
+                </section>
+
+                <div class="line">
+                    <img src="assets/line.svg"/>
+                </div>
+                
+                <section>
+                    <p>Valor Total:</p>
+                    <p class="complement"></p>
+                </section>
+                
+            </div>  
             
-            <div class="values">
-                <p class="withoutDiscounts"></p>
-                <p class="amountPaid"></p>
-                <p class="withDiscounts"></p>
-                <p class="thirteenth"></p>
-                <p class="complement"></p>
+            <div class="rubrica">
+                <section>
+                    <p>Rubrica</p>
+                    <p>Valor</p>
+                </section>
+
+                <section>
+                    <p>101: </p>
+                    <p class="withDiscounts"></p>
+                </section>
+
+                <section>
+                    <p>104: </p>
+                    <p class="thirteenth"></p>
+                </section>
             </div>
-        </div>    
+        </div>     
 
         <button type='button' onclick="mostra_oculta()"> Voltar</button>
     </div>
+   
+    
 
 </body>
 </html>
